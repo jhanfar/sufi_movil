@@ -7,6 +7,9 @@ class NavigatorService {
   final GlobalKey<NavigatorState> authNavigatorKey =
       new GlobalKey<NavigatorState>();
 
+   final GlobalKey<NavigatorState> coreNavigatorKey =
+      new GlobalKey<NavigatorState>();    
+
   void push(
       {required String route, GlobalKey<NavigatorState>? key, dynamic params}) {
     if (key == null) key = navigatorKey;

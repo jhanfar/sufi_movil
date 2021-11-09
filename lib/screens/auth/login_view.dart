@@ -22,6 +22,10 @@ class _LoginViewState extends State<LoginView> {
     super.initState();
   }
 
+  void goToForgotPassword() {
+    navigator.push(route: ForgotPasswordView.route,key: navigator.authNavigatorKey );
+  }
+
   bool get disableButton =>
       emailController.text.isEmpty || passwordController.text.isEmpty;
 
@@ -30,6 +34,7 @@ class _LoginViewState extends State<LoginView> {
         email: emailController.text, password: passwordController.text);
     if (user != null) {
       //TODO add redirect
+      navigateToValidateOtp();
       debugPrint('Login Success');
     }
   }
@@ -53,6 +58,11 @@ class _LoginViewState extends State<LoginView> {
 
   void navigateToSignUp() {
     navigator.push(route: SignUpView.route, key: navigator.authNavigatorKey);
+  }
+
+   void navigateToValidateOtp() {
+     print("entro al metodo navigateToValidateOtp()");
+    navigator.replace(route: ValidateOtpView.route, key: navigator.coreNavigatorKey);
   }
 
   @override
@@ -130,9 +140,7 @@ class _LoginViewState extends State<LoginView> {
                     ],
                   ),
                   InkWell(
-                    onTap: () {
-                      print('tap on link');
-                    },
+                    onTap: goToForgotPassword,                   
                     child: Text(
                       'Forgot Password',
                       style: TextStyle(
